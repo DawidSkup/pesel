@@ -71,19 +71,38 @@ $historia = $database->getHistory(20);
                 <label class="pole">
                     <span class="etykieta">Dzień</span>
                     <input type="number" name="dzien" inputmode="numeric" min="1" max="31" step="1"
-                           placeholder="DD" value="<?= htmlspecialchars($dzien, ENT_QUOTES, 'UTF-8') ?>" required>
+                           list="lista-dni" placeholder="DD" value="<?= htmlspecialchars($dzien, ENT_QUOTES, 'UTF-8') ?>" required>
                 </label>
                 <label class="pole">
                     <span class="etykieta">Miesiąc</span>
                     <input type="number" name="miesiac" inputmode="numeric" min="1" max="12" step="1"
-                           placeholder="MM" value="<?= htmlspecialchars($miesiac, ENT_QUOTES, 'UTF-8') ?>" required>
+                           list="lista-miesiecy" placeholder="MM" value="<?= htmlspecialchars($miesiac, ENT_QUOTES, 'UTF-8') ?>" required>
                 </label>
                 <label class="pole">
                     <span class="etykieta">Rok</span>
                     <input type="number" name="rok" inputmode="numeric" min="1800" max="2299" step="1"
-                           placeholder="RRRR" value="<?= htmlspecialchars($rok, ENT_QUOTES, 'UTF-8') ?>" required>
+                           list="lista-lat" placeholder="RRRR" value="<?= htmlspecialchars($rok, ENT_QUOTES, 'UTF-8') ?>" required>
                 </label>
             </div>
+
+            <datalist id="lista-dni">
+                <?php for ($i = 1; $i <= 31; $i++): ?>
+                    <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor; ?>
+            </datalist>
+            <datalist id="lista-miesiecy">
+                <?php
+                $nazwyMiesiecy = ['', 'styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec',
+                                  'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'];
+                for ($i = 1; $i <= 12; $i++): ?>
+                    <option value="<?= $i ?>"><?= $nazwyMiesiecy[$i] ?></option>
+                <?php endfor; ?>
+            </datalist>
+            <datalist id="lista-lat">
+                <?php for ($i = 2299; $i >= 1800; $i--): ?>
+                    <option value="<?= $i ?>"></option>
+                <?php endfor; ?>
+            </datalist>
         </fieldset>
 
         <fieldset class="plec">
