@@ -46,3 +46,58 @@
 - [x] Wersja mobilna (media query dla małych ekranów)
 - [x] Stany przycisku w JS („⏳ Generowanie…" → „🎲 Generuj PESEL") + kopiowanie do schowka
 
+## Etap 7 — Repozytorium Git
+
+- [x] `git init` (branch `main`), `.gitignore` (bez `pesel.sqlite` i `test.php`)
+- [x] Dodany `README.md` z opisem projektu
+- [x] Zdalne repozytorium: https://github.com/DawidSkup/pesel — commit `cddd5f2` i push na `main`
+
+## Etap 8 — Osobne pola daty
+
+- [x] Zamiast jednego `type="date"` — trzy pola: **Dzień / Miesiąc / Rok** (`index.php`)
+- [x] Serwer składa z nich datę `RRRR-MM-DD` i przekazuje do `generatePesel()`
+- [x] Style trzech pól w jednym rzędzie (grid), ukryte strzałki spinnerów
+- [x] Walidacja HTML5 (`checkValidity` / `reportValidity`) przed wysłaniem AJAX
+- [x] Commit `282cb13` — „Data urodzenia: osobne pola na dzien, miesiac i rok"
+
+## Etap 9 — Poprawki wyglądu (segmenty, spójność)
+
+- [x] Wybór płci jako **segmenty** (dwa kafle, podświetlenie wybranego, obsługa `:has()`)
+- [x] Jednolity wygląd obu `fieldset` (jasne tło, legenda w kapitalikach)
+- [x] Ujednolicone pola `input`, subtelny cień, wyrównane cyfry (`tabular-nums`)
+- [x] Commit `68b6ad6` — „Wyglad: segmentowy wybor plci…"
+
+## Etap 10 — Podpowiedzi w polach daty
+
+- [x] Listy podpowiedzi (`<datalist>`) dla dnia (1–31), miesiąca (1–12) i roku — commit `d35f21d`
+- [x] Okazało się, że natywny `datalist` sortuje wartości i pokazuje tylko dopasowania
+- [x] Zastąpiony **własną przewijalną listą** (`div.lista-panel` + logika w `script.js`):
+  - [x] wartości pokazywane po kolei: dzień 1…31, miesiąc „1 — styczeń"…, rok **od 1900** w górę
+  - [x] auto-przewinięcie do wybranej wartości, podświetlenie zaznaczonej
+  - [x] zamykanie: klik w tło / `Esc` / zmiana rozmiaru okna
+- [x] Pole roku: zakres formularza **1900–2299** (serwer nadal przyjmuje 1800–2299)
+- [x] Commit `6cd615d` — „Data urodzenia: przewijalna lista wyboru (rok od 1900) zamiast datalist"
+
+## Etap 11 — Nowoczesny motyw (commit `6b16a4b`)
+
+- [x] Wielowarstwowe tło (rozbłysk + gradient), głębsze cienie kart
+- [x] Gradientowy tytuł, ikona z efektem obrotu, animacje pojawienia się (wynik, błąd, lista)
+- [x] Daty w historii rozdzielone na datę urodzenia i datę dodania (dwa odcienie)
+- [x] Obsługa `prefers-reduced-motion`, dopracowana responsywność
+- [x] Commit `6b16a4b` — „Wyglad: nowoczesny motyw…"
+
+## Historia commitów (od najstarszego)
+
+| Commit | Opis |
+|--------|------|
+| `cddd5f2` | Generator PESEL: logika, formularz AJAX, historia i wygląd |
+| `282cb13` | Data urodzenia: osobne pola na dzień, miesiąc i rok |
+| `68b6ad6` | Wygląd: segmentowy wybór płci, spójne pola formularza |
+| `d35f21d` | Listy podpowiedzi (datalist) dla dnia, miesiąca i roku |
+| `6b16a4b` | Wygląd: nowoczesny motyw, gradientowy nagłówek, animacje |
+| `6cd615d` | Przewijalna lista wyboru (rok od 1900) zamiast datalist |
+
+## Do zrobienia / możliwe dalej
+
+- [ ] Sprawdzenie w Laragonie pod adresem `localhost/pesel`
+- [ ] Ewentualnie: czyszczenie historii, eksport numerów, ciemny motyw
