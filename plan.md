@@ -113,6 +113,10 @@
 - [x] Podpięta ikona `favicon.png` w `<head>` (`<link rel="icon" type="image/png" href="favicon.png">`)
 - [x] Sprawdzone: plik serwowany jako `image/png` (HTTP 200, 535 B)
 
+## Etap 14 — Drobne poprawki
+
+- [x] Usunięta ikonka ostrzeżenia (`⚠️` z reguły `.blad::before`) pod przyciskiem „Generuj PESEL"
+
 ## Do zrobienia / możliwe dalej
 
 - [ ] Sprawdzenie w Laragonie pod adresem `localhost/pesel`

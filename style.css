@@ -247,8 +247,6 @@ button:disabled { opacity: .65; cursor: wait; transform: none; box-shadow: none;
     animation: pojaw .25s ease;
 }
 
-.blad::before { content: "⚠️"; }
-
 /* ---------- wynik ---------- */
 
 .wynik {
