@@ -43,6 +43,7 @@ Generator numeru PESEL:
 | `generator.php` | logika generowania numeru PESEL (maski wieku, cyfra kontrolna) |
 | `style.css` | wygląd (zmienne CSS, karty, animacje, responsywność) |
 | `script.js` | obsługa formularza bez przeładowania, przewijalne listy, kopiowanie |
+| `favicon.png` | ikona strony (podpięta w `<head>` przez `<link rel="icon">`) |
 | `test.php` | testy logiki (nie trafia do repo — `.gitignore`) |
 | `README.md` | krótki opis dla repozytorium |
 | `plan.md` | plan pracy z odhaczanymi zadaniami |
