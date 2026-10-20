@@ -1,6 +1,6 @@
 :root {
     --tlo-top: #eef2fb;
-    --tlo-bottom: #e3e9f7;
+    --tlo-bottom: #e1e8f7;
     --karta: #ffffff;
     --tekst: #1c2333;
     --szary: #6b7488;
@@ -13,6 +13,7 @@
     --blad-delikatny: #fdeeee;
     --obramowanie: #e2e7f1;
     --cien: 0 10px 30px rgba(28, 35, 51, .08);
+    --cien-maly: 0 2px 6px rgba(28, 35, 51, .06);
 }
 
 * { box-sizing: border-box; }
@@ -22,8 +23,10 @@ body {
     font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
     color: var(--tekst);
     background: linear-gradient(180deg, var(--tlo-top), var(--tlo-bottom));
+    background-attachment: fixed;
     min-height: 100vh;
     line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
 main {
@@ -49,7 +52,7 @@ main {
     background: linear-gradient(135deg, var(--akcent), #6a9bff);
     color: #fff;
     font-size: 1.9rem;
-    box-shadow: var(--cien);
+    box-shadow: 0 8px 20px rgba(47, 109, 246, .35);
     margin-bottom: .75rem;
 }
 
@@ -76,69 +79,26 @@ form, .wynik, #historia {
     box-shadow: var(--cien);
 }
 
-/* ---------- formularz ---------- */
+/* ---------- sekcje formularza (fieldset) ---------- */
 
-.pole {
-    display: block;
-    margin-bottom: 1.25rem;
-}
-
-.pole .etykieta,
-.plec legend {
-    display: block;
-    font-weight: 600;
-    font-size: .9rem;
-    margin-bottom: .4rem;
-    color: var(--tekst);
-}
-
-.pole input[type="date"] {
-    width: 100%;
-    padding: .7rem .85rem;
-    border: 1px solid var(--obramowanie);
-    border-radius: 10px;
-    font: inherit;
-    background: #fbfcfe;
-    transition: border-color .15s, box-shadow .15s;
-}
-
-.pole input[type="date"]:focus {
-    outline: none;
-    border-color: var(--akcent);
-    box-shadow: 0 0 0 3px rgba(47, 109, 246, .18);
-    background: #fff;
-}
-
-.pole input[type="number"] {
-    padding: .7rem .85rem;
-    border: 1px solid var(--obramowanie);
-    border-radius: 10px;
-    font: inherit;
-    text-align: center;
-    background: #fbfcfe;
-    transition: border-color .15s, box-shadow .15s;
-}
-
-.pole input[type="number"]:focus {
-    outline: none;
-    border-color: var(--akcent);
-    box-shadow: 0 0 0 3px rgba(47, 109, 246, .18);
-    background: #fff;
-}
-
-.plec {
+fieldset {
     border: 1px solid var(--obramowanie);
     border-radius: 12px;
     margin: 0 0 1.4rem;
-    padding: .4rem 1rem .9rem;
+    padding: .5rem 1rem 1rem;
+    background: #fbfcfe;
 }
 
-.data {
-    border: 1px solid var(--obramowanie);
-    border-radius: 12px;
-    margin: 0 0 1.4rem;
-    padding: .4rem 1rem .9rem;
+fieldset legend {
+    font-weight: 700;
+    font-size: .85rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--szary);
+    padding: 0 .4rem;
 }
+
+/* ---------- data urodzenia ---------- */
 
 .data .data-pola {
     display: grid;
@@ -146,28 +106,89 @@ form, .wynik, #historia {
     gap: .75rem;
 }
 
-.data .pole { margin-bottom: 0; }
-.data input[type="number"] { width: 100%; }
-.data input[type="number"] { -moz-appearance: textfield; }
-.data input[type="number"]::-webkit-outer-spin-button,
-.data input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.pole { display: block; }
+
+.pole .etykieta {
+    display: block;
+    font-weight: 600;
+    font-size: .9rem;
+    margin-bottom: .4rem;
+    color: var(--tekst);
+}
+
+.pole input {
+    width: 100%;
+    padding: .7rem .85rem;
+    border: 1px solid var(--obramowanie);
+    border-radius: 10px;
+    font: inherit;
+    background: #fff;
+    box-shadow: var(--cien-maly);
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.pole input:focus {
+    outline: none;
+    border-color: var(--akcent);
+    box-shadow: 0 0 0 3px rgba(47, 109, 246, .18);
+}
+
+.pole input[type="number"] {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+/* delikatne strzałki zgodne z resztą stylu */
+.pole input[type="number"]::-webkit-outer-spin-button,
+.pole input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.pole input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+/* ---------- wybór płci (segmenty) ---------- */
+
+.plec .opcje {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .6rem;
+}
 
 .plec label {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: .45rem;
-    margin-right: 1.5rem;
-    padding: .45rem .2rem;
+    justify-content: center;
+    gap: .5rem;
+    padding: .7rem .9rem;
+    border: 1px solid var(--obramowanie);
+    border-radius: 10px;
+    background: #fff;
     cursor: pointer;
-    font-size: .98rem;
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--szary);
+    transition: border-color .15s, background .15s, color .15s;
 }
 
+.plec label:hover { border-color: var(--akcent); color: var(--tekst); }
+
 .plec input[type="radio"] {
-    width: 1.05rem;
-    height: 1.05rem;
-    accent-color: var(--akcent);
-    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
 }
+
+.plec label:has(input:checked) {
+    border-color: var(--akcent);
+    background: var(--akcent-delikatny);
+    color: var(--akcent-ciemny);
+}
+
+.plec label:has(input:focus-visible) {
+    box-shadow: 0 0 0 3px rgba(47, 109, 246, .18);
+}
+
+/* ---------- przyciski ---------- */
 
 button {
     display: inline-flex;
@@ -269,6 +290,7 @@ code.pesel {
     padding: .7rem .6rem;
     border-radius: 10px;
     border-bottom: 1px solid var(--obramowanie);
+    transition: background .15s;
 }
 
 .historia li:last-child { border-bottom: 0; }
@@ -304,6 +326,9 @@ code.pesel {
 }
 
 @media (max-width: 480px) {
+    main { margin-top: 1.5rem; }
+    .data .data-pola { grid-template-columns: 1fr 1fr; }
+    .data .data-pola .pole:last-child { grid-column: 1 / -1; }
     code.pesel { font-size: 1.45rem; letter-spacing: .1em; }
     .historia .szczegoly { margin-left: 0; width: 100%; }
 }

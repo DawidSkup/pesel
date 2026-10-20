@@ -88,8 +88,10 @@ $historia = $database->getHistory(20);
 
         <fieldset class="plec">
             <legend>Płeć</legend>
-            <label><input type="radio" name="plec" value="k" <?= $plec === 'k' ? 'checked' : '' ?>> 👩 Kobieta</label>
-            <label><input type="radio" name="plec" value="m" <?= $plec === 'm' ? 'checked' : '' ?>> 👨 Mężczyzna</label>
+            <div class="opcje">
+                <label><input type="radio" name="plec" value="k" <?= $plec === 'k' ? 'checked' : '' ?>> 👩 Kobieta</label>
+                <label><input type="radio" name="plec" value="m" <?= $plec === 'm' ? 'checked' : '' ?>> 👨 Mężczyzna</label>
+            </div>
         </fieldset>
 
         <button type="submit">🎲 Generuj PESEL</button>
