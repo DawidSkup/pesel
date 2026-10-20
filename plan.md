@@ -2,10 +2,10 @@
 
 > Zaznaczam `[x]` wykonane zadania, na bieżąco aktualizując ten plik.
 
-## Etap 1 — Baza danych
+## Etap 1 — ~~Baza danych~~ (usunięta w Etapie 12)
 
-- [x] Klasa `Database` (PDO + SQLite), tabela `generated_pesel` (pesel, gender, birth_date, created_at)
-- [x] Zapisywanie wygenerowanego numeru (`savePesel`) i pobieranie historii (`getHistory`)
+- [x] ~~Klasa `Database` (PDO + SQLite), tabela `generated_pesel`~~
+- [x] ~~Zapisywanie wygenerowanego numeru i pobieranie historii~~
 
 ## Etap 2 — Logika generowania PESEL
 
@@ -23,10 +23,10 @@
 - [x] `style.css` — prosty, czytelny styl (karta formularza, duży numer, lista historii)
 - [x] `script.js` — interakcja bez przeładowania strony (fetch do `index.php` z `ajax=1`)
 
-## Etap 4 — Historia wygenerowanych numerów
+## Etap 4 — ~~Historia wygenerowanych numerów~~ (usunięta w Etapie 12)
 
-- [x] Lista ostatnich wygenerowanych numerów (`historia.php`: numer, płeć, data urodzenia, data dodania)
-- [x] Odświeżanie historii po każdym wygenerowaniu (fetch `historia.php?ajax=1`)
+- [x] ~~Lista ostatnich wygenerowanych numerów (`historia.php`)~~
+- [x] ~~Odświeżanie historii po każdym wygenerowaniu~~
 
 ## Etap 5 — Dopracowanie
 
@@ -96,8 +96,19 @@
 | `d35f21d` | Listy podpowiedzi (datalist) dla dnia, miesiąca i roku |
 | `6b16a4b` | Wygląd: nowoczesny motyw, gradientowy nagłówek, animacje |
 | `6cd615d` | Przewijalna lista wyboru (rok od 1900) zamiast datalist |
+| `04da449` | Dokumentacja: pełny stan prac w `AGENTS.md` i `plan.md` |
+
+## Etap 12 — Usunięcie historii i bazy danych
+
+- [x] Usunięta sekcja historii z `index.php` (sekcja `<section id="historia">`)
+- [x] Usunięte odświeżanie historii z `script.js`
+- [x] Usunięte style historii z `style.css` (`.historia`, `.odznaka`, `.pusty` itd.)
+- [x] Usunięty plik `historia.php`
+- [x] Usunięty zapis numerów do bazy, plik `db.php` oraz `pesel.sqlite`
+- [x] Zaktualizowany `.gitignore` (bez wpisów o bazie) i dokumentacja
+- [x] Sprawdzone: strona i generowanie działają bez bazy (`85060519925`)
 
 ## Do zrobienia / możliwe dalej
 
 - [ ] Sprawdzenie w Laragonie pod adresem `localhost/pesel`
-- [ ] Ewentualnie: czyszczenie historii, eksport numerów, ciemny motyw
+- [ ] Ewentualnie: ciemny motyw, walidacja daty po stronie klienta

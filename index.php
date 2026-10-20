@@ -1,10 +1,6 @@
 <?php
 
-require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/generator.php';
-require_once __DIR__ . '/historia.php';
-
-$database = new Database(__DIR__ . '/pesel.sqlite');
 
 $blad  = null;
 $wynik = null;
@@ -26,10 +22,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         $data = sprintf('%04d-%02d-%02d', $r, $m, $d);
 
         $pesel = generatePesel($data, $plec);
-        $database->savePesel($pesel, $plec, $data);
         $wynik = $pesel;
 
-        // odpowiedź AJAX — sam numer, historia odświeżana osobnym zapytaniem
+        // odpowiedź AJAX — sam numer
         if (isset($_POST['ajax'])) {
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode(['ok' => true, 'pesel' => $pesel], JSON_UNESCAPED_UNICODE);
@@ -45,8 +40,6 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         }
     }
 }
-
-$historia = $database->getHistory(20);
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -104,11 +97,6 @@ $historia = $database->getHistory(20);
         <code class="pesel"><?= htmlspecialchars((string) $wynik, ENT_QUOTES, 'UTF-8') ?></code>
         <button type="button" class="kopiuj" data-kopiuj>📋 Kopiuj</button>
     </div>
-
-    <section id="historia">
-        <h2>📜 Historia wygenerowanych numerów</h2>
-        <?= historiaHtml($historia) ?>
-    </section>
 </main>
 <div id="lista-panel" class="lista-panel" hidden></div>
 <script src="script.js"></script>

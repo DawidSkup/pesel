@@ -2,8 +2,9 @@
 
 ## Wymagania techniczne
 
-- Baza danych: **SQLite** (`pesel.sqlite`, przez PDO)
 - Technologie: **PHP + HTML + CSS + JS**
+- **Bez bazy danych** — numer liczony jest „na żywo", nic nie jest zapisywane
+  (historia wygenerowanych numerów i SQLite zostały usunięte)
 
 ## Funkcjonalność
 
@@ -21,7 +22,7 @@ Generator numeru PESEL:
    - następnie **odejmuje się ją od 10**,
    - jeśli wynik jest dwucyfrowy, bierze się **tylko drugą cyfrę**,
    - otrzymana cyfra jest **11. cyfrą numeru PESEL**,
-   - gotowy numer PESEL zostaje wypisany i zapisany w bazie.
+   - gotowy numer PESEL zostaje wypisany.
 
 ## Format daty urodzenia w formularzu
 
@@ -38,23 +39,13 @@ Generator numeru PESEL:
 
 | Plik | Opis |
 |------|------|
-| `index.php` | formularz + wynik + historia, zapis do bazy |
+| `index.php` | formularz + wynik (generowanie przez AJAX) |
 | `generator.php` | logika generowania numeru PESEL (maski wieku, cyfra kontrolna) |
-| `historia.php` | lista ostatnich numerów (także endpoint AJAX `?ajax=1`) |
-| `db.php` | klasa `Database` (PDO + SQLite) |
 | `style.css` | wygląd (zmienne CSS, karty, animacje, responsywność) |
 | `script.js` | obsługa formularza bez przeładowania, przewijalne listy, kopiowanie |
 | `test.php` | testy logiki (nie trafia do repo — `.gitignore`) |
 | `README.md` | krótki opis dla repozytorium |
 | `plan.md` | plan pracy z odhaczanymi zadaniami |
-
-## Baza danych
-
-- Klasa `Database` (PDO + SQLite) tworzy tabelę `generated_pesel`
-  (`pesel`, `gender`, `birth_date`, `created_at`), zapisuje numer (`savePesel`)
-  i pobiera historię (`getHistory`, domyślnie 20 ostatnich).
-- Plik bazy `pesel.sqlite` tworzy się automatycznie przy pierwszym żądaniu
-  i **nie trafia do repozytorium**.
 
 ## Walidacja
 
@@ -66,5 +57,5 @@ Generator numeru PESEL:
 ## Repozytorium
 
 - Zdalne: **https://github.com/DawidSkup/pesel** (branch `main`).
-- `.gitignore` pomija `pesel.sqlite`, `*.sqlite*`, `test.php` oraz pliki systemowe/edytora.
-- Po każdej zmianie robię commit i `git push` na `main`.
+- `.gitignore` pomija `test.php` oraz pliki systemowe/edytora.
+- Po każdej zmianie robię commit i `git push` na `main`, a opis zmian dopisuję do `plan.md`.

@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (wynik.ok) {
                 wynikEl.hidden = false;
                 wynikEl.querySelector('code.pesel').textContent = wynik.pesel;
-                odswiezHistorie();
             } else {
                 pokazBlad(wynik.blad || 'Wystąpił błąd.');
             }
@@ -130,17 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
         bladEl.textContent = tekst;
         bladEl.hidden = false;
         wynikEl.hidden = true;
-    }
-
-    async function odswiezHistorie() {
-        const sekcja = document.getElementById('historia');
-        try {
-            const odp = await fetch('historia.php?ajax=1');
-            const html = await odp.text();
-            sekcja.innerHTML = '<h2>📜 Historia wygenerowanych numerów</h2>' + html;
-        } catch (err) {
-            /* historia odświeży się przy następnym generowaniu */
-        }
     }
 
     kopiujBtn.addEventListener('click', async () => {

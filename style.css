@@ -86,7 +86,7 @@ h1 {
 
 /* ---------- karty ---------- */
 
-form, .wynik, #historia {
+form, .wynik {
     background: var(--karta);
     border: 1px solid var(--obramowanie);
     border-radius: var(--radius);
@@ -297,69 +297,6 @@ code.pesel {
 
 .wynik .kopiuj:hover { background: var(--sukces-delikatny); box-shadow: var(--cien-maly); transform: none; filter: none; }
 
-/* ---------- historia ---------- */
-
-#historia h2 {
-    margin: 0 0 1.1rem;
-    font-size: 1.08rem;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    letter-spacing: -.01em;
-}
-
-.historia { list-style: none; margin: 0; padding: 0; }
-
-.historia li {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: .6rem;
-    padding: .75rem .7rem;
-    border-radius: 11px;
-    border-bottom: 1px solid var(--obramowanie);
-    transition: background .15s;
-}
-
-.historia li:last-child { border-bottom: 0; }
-.historia li:hover { background: var(--akcent-delikatny); }
-
-.historia code.pesel {
-    font-size: 1.05rem;
-    letter-spacing: .1em;
-    color: var(--akcent-ciemny);
-    padding: 0;
-    cursor: default;
-}
-
-.odznaka {
-    font-size: .74rem;
-    font-weight: 700;
-    padding: .22rem .65rem;
-    border-radius: 999px;
-    white-space: nowrap;
-}
-
-.odznaka.k { background: #fce7f3; color: #be185d; }
-.odznaka.m { background: #e0ecff; color: #1d4ed8; }
-
-.historia .szczegoly {
-    margin-left: auto;
-    color: var(--szary-jasny);
-    font-size: .8rem;
-    display: flex;
-    gap: .5rem;
-}
-
-.historia .szczegoly .data-ur { color: var(--szary); }
-
-.pusty {
-    color: var(--szary-jasny);
-    text-align: center;
-    padding: 1.5rem 0;
-    font-size: .92rem;
-}
-
 /* ---------- przewijalna lista podpowiedzi ---------- */
 
 .lista-panel {
@@ -428,9 +365,8 @@ code.pesel {
 @media (max-width: 480px) {
     main { margin-top: 1.75rem; }
     h1 { font-size: 1.5rem; }
-    form, .wynik, #historia { padding: 1.25rem; }
+    form, .wynik { padding: 1.25rem; }
     .data .data-pola { grid-template-columns: 1fr 1fr; }
     .data .data-pola .pole:last-child { grid-column: 1 / -1; }
     code.pesel { font-size: 1.5rem; letter-spacing: .14em; }
-    .historia .szczegoly { margin-left: 0; width: 100%; }
 }

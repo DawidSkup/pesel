@@ -1,12 +1,11 @@
 # Generator numeru PESEL
 
-Prosty generator poprawnych numerów PESEL (PHP + JS + CSS, SQLite).
+Prosty generator poprawnych numerów PESEL (PHP + JS + CSS), bez bazy danych.
 
 ## Wymagania techniczne
 
-- **PHP** (PDO + SQLite)
+- **PHP**
 - **HTML + CSS + JS**
-- **SQLite** — dane trzymane w pliku `pesel.sqlite`
 
 ## Jak to działa
 
@@ -23,18 +22,15 @@ Numer PESEL (11 cyfr) powstaje tak:
 
 | Plik | Opis |
 |------|------|
-| `index.php` | formularz + wynik, zapis do bazy |
+| `index.php` | formularz + wynik (generowanie przez AJAX) |
 | `generator.php` | logika generowania numeru PESEL |
-| `historia.php` | lista ostatnich numerów (także endpoint AJAX) |
-| `db.php` | klasa `Database` (PDO + SQLite) |
 | `style.css` | wygląd |
-| `script.js` | obsługa formularza bez przeładowania + kopiowanie |
+| `script.js` | obsługa formularza bez przeładowania, przewijalne listy, kopiowanie |
 
 ## Uruchomienie
 
 1. Umieść katalog w docroot (np. Laragon) i otwórz `http://localhost/pesel`.
-2. Baza `pesel.sqlite` tworzy się automatycznie przy pierwszym żądaniu.
-3. Alternatywnie wbudowany serwer PHP:
+2. Alternatywnie wbudowany serwer PHP:
 
    ```bash
    php -S 127.0.0.1:8000 -t .
@@ -42,5 +38,6 @@ Numer PESEL (11 cyfr) powstaje tak:
 
 ## Uwagi
 
-- `pesel.sqlite` oraz `test.php` nie trafiają do repozytorium (`.gitignore`).
-- Zakres obsługiwanych lat: **1800–2299**.
+- `test.php` nie trafia do repozytorium (`.gitignore`).
+- Zakres obsługiwanych lat: **1800–2299** (w formularzu rok od 1900).
+- Historia wygenerowanych numerów oraz baza SQLite zostały usunięte — numer liczony jest na żywo.
