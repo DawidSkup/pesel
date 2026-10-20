@@ -1,0 +1,15 @@
+# baza danych (dane lokalne)
+pesel.sqlite
+*.sqlite
+*.sqlite-journal
+
+# pliki testowe
+test.php
+
+# systemowe / edytora
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.log

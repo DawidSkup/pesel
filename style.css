@@ -1,0 +1,273 @@
+:root {
+    --tlo-top: #eef2fb;
+    --tlo-bottom: #e3e9f7;
+    --karta: #ffffff;
+    --tekst: #1c2333;
+    --szary: #6b7488;
+    --akcent: #2f6df6;
+    --akcent-ciemny: #1e51c0;
+    --akcent-delikatny: #eaf1ff;
+    --sukces: #16a34a;
+    --sukces-delikatny: #eafaf0;
+    --blad: #d33c3c;
+    --blad-delikatny: #fdeeee;
+    --obramowanie: #e2e7f1;
+    --cien: 0 10px 30px rgba(28, 35, 51, .08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--tekst);
+    background: linear-gradient(180deg, var(--tlo-top), var(--tlo-bottom));
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+main {
+    max-width: 680px;
+    margin: 2.5rem auto;
+    padding: 0 1rem 2rem;
+}
+
+/* ---------- nagłówek ---------- */
+
+.naglowek {
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+
+.naglowek .ikona {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--akcent), #6a9bff);
+    color: #fff;
+    font-size: 1.9rem;
+    box-shadow: var(--cien);
+    margin-bottom: .75rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.7rem;
+    letter-spacing: -.02em;
+}
+
+.naglowek p {
+    margin: .35rem 0 0;
+    color: var(--szary);
+    font-size: .95rem;
+}
+
+/* ---------- karty ---------- */
+
+form, .wynik, #historia {
+    background: var(--karta);
+    border: 1px solid var(--obramowanie);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--cien);
+}
+
+/* ---------- formularz ---------- */
+
+.pole {
+    display: block;
+    margin-bottom: 1.25rem;
+}
+
+.pole .etykieta,
+.plec legend {
+    display: block;
+    font-weight: 600;
+    font-size: .9rem;
+    margin-bottom: .4rem;
+    color: var(--tekst);
+}
+
+.pole input[type="date"] {
+    width: 100%;
+    padding: .7rem .85rem;
+    border: 1px solid var(--obramowanie);
+    border-radius: 10px;
+    font: inherit;
+    background: #fbfcfe;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.pole input[type="date"]:focus {
+    outline: none;
+    border-color: var(--akcent);
+    box-shadow: 0 0 0 3px rgba(47, 109, 246, .18);
+    background: #fff;
+}
+
+.plec {
+    border: 1px solid var(--obramowanie);
+    border-radius: 12px;
+    margin: 0 0 1.4rem;
+    padding: .4rem 1rem .9rem;
+}
+
+.plec label {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    margin-right: 1.5rem;
+    padding: .45rem .2rem;
+    cursor: pointer;
+    font-size: .98rem;
+}
+
+.plec input[type="radio"] {
+    width: 1.05rem;
+    height: 1.05rem;
+    accent-color: var(--akcent);
+    cursor: pointer;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    width: 100%;
+    background: linear-gradient(135deg, var(--akcent), var(--akcent-ciemny));
+    color: #fff;
+    border: 0;
+    border-radius: 12px;
+    padding: .8rem 1.4rem;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s, opacity .15s;
+    box-shadow: 0 6px 16px rgba(47, 109, 246, .3);
+}
+
+button:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(47, 109, 246, .38); }
+button:active { transform: translateY(0); }
+button:disabled { opacity: .6; cursor: wait; transform: none; box-shadow: none; }
+
+/* ---------- komunikat błędu ---------- */
+
+.blad {
+    background: var(--blad-delikatny);
+    border: 1px solid #f3c6c6;
+    color: var(--blad);
+    font-weight: 600;
+    text-align: center;
+    border-radius: 12px;
+    padding: .8rem 1rem;
+    margin-bottom: 1.25rem;
+}
+
+/* ---------- wynik ---------- */
+
+.wynik {
+    text-align: center;
+    background: linear-gradient(180deg, #fff, var(--sukces-delikatny));
+    border-color: #bfe8cd;
+    padding: 1.75rem 1.5rem;
+}
+
+.wynik .etykieta {
+    display: block;
+    color: var(--szary);
+    font-size: .85rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: .5rem;
+}
+
+code.pesel {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: var(--tekst);
+    user-select: all;
+}
+
+.wynik .kopiuj {
+    width: auto;
+    margin-top: 1rem;
+    background: #fff;
+    color: var(--sukces);
+    border: 1px solid #bfe8cd;
+    box-shadow: none;
+    padding: .5rem 1.1rem;
+    border-radius: 10px;
+    font-size: .9rem;
+}
+
+.wynik .kopiuj:hover { background: var(--sukces-delikatny); box-shadow: none; transform: none; }
+
+/* ---------- historia ---------- */
+
+#historia h2 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.historia {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.historia li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .6rem;
+    padding: .7rem .6rem;
+    border-radius: 10px;
+    border-bottom: 1px solid var(--obramowanie);
+}
+
+.historia li:last-child { border-bottom: 0; }
+.historia li:hover { background: var(--akcent-delikatny); }
+
+.historia code.pesel {
+    font-size: 1.05rem;
+    letter-spacing: .08em;
+    color: var(--akcent-ciemny);
+}
+
+.odznaka {
+    font-size: .78rem;
+    font-weight: 600;
+    padding: .2rem .6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.odznaka.k { background: #fce7f3; color: #be185d; }
+.odznaka.m { background: #e0ecff; color: #1d4ed8; }
+
+.historia .szczegoly {
+    margin-left: auto;
+    color: var(--szary);
+    font-size: .82rem;
+}
+
+.pusty {
+    color: var(--szary);
+    text-align: center;
+    padding: 1rem 0;
+}
+
+@media (max-width: 480px) {
+    code.pesel { font-size: 1.45rem; letter-spacing: .1em; }
+    .historia .szczegoly { margin-left: 0; width: 100%; }
+}
