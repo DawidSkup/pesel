@@ -21,8 +21,10 @@ function historiaHtml(array $rows): string
         $html .= '<li>'
             . '<code class="pesel">' . htmlspecialchars($row['pesel'], ENT_QUOTES, 'UTF-8') . '</code>'
             . $odznaka
-            . '<span class="szczegoly">ur. ' . htmlspecialchars($row['birth_date'], ENT_QUOTES, 'UTF-8')
-            . ' · ' . htmlspecialchars($row['created_at'], ENT_QUOTES, 'UTF-8') . '</span>'
+            . '<span class="szczegoly">'
+            . '<span class="data-ur">ur. ' . htmlspecialchars($row['birth_date'], ENT_QUOTES, 'UTF-8') . '</span>'
+            . '<span>' . htmlspecialchars($row['created_at'], ENT_QUOTES, 'UTF-8') . '</span>'
+            . '</span>'
             . '</li>';
     }
     return $html . '</ul>';
