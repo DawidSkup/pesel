@@ -109,12 +109,48 @@ form, .wynik, #historia {
     background: #fff;
 }
 
+.pole input[type="number"] {
+    padding: .7rem .85rem;
+    border: 1px solid var(--obramowanie);
+    border-radius: 10px;
+    font: inherit;
+    text-align: center;
+    background: #fbfcfe;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.pole input[type="number"]:focus {
+    outline: none;
+    border-color: var(--akcent);
+    box-shadow: 0 0 0 3px rgba(47, 109, 246, .18);
+    background: #fff;
+}
+
 .plec {
     border: 1px solid var(--obramowanie);
     border-radius: 12px;
     margin: 0 0 1.4rem;
     padding: .4rem 1rem .9rem;
 }
+
+.data {
+    border: 1px solid var(--obramowanie);
+    border-radius: 12px;
+    margin: 0 0 1.4rem;
+    padding: .4rem 1rem .9rem;
+}
+
+.data .data-pola {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 1.6fr;
+    gap: .75rem;
+}
+
+.data .pole { margin-bottom: 0; }
+.data input[type="number"] { width: 100%; }
+.data input[type="number"] { -moz-appearance: textfield; }
+.data input[type="number"]::-webkit-outer-spin-button,
+.data input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
 .plec label {
     display: inline-flex;

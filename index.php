@@ -9,13 +9,22 @@ $database = new Database(__DIR__ . '/pesel.sqlite');
 $blad  = null;
 $wynik = null;
 $plec  = 'k';
-$data  = '';
+$dzien = '';
+$miesiac = '';
+$rok   = '';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
-    $plec = $_POST['plec'] ?? '';
-    $data = $_POST['data'] ?? '';
+    $plec    = $_POST['plec'] ?? '';
+    $dzien   = trim((string) ($_POST['dzien'] ?? ''));
+    $miesiac = trim((string) ($_POST['miesiac'] ?? ''));
+    $rok     = trim((string) ($_POST['rok'] ?? ''));
 
     try {
+        $d = (int) $dzien;
+        $m = (int) $miesiac;
+        $r = (int) $rok;
+        $data = sprintf('%04d-%02d-%02d', $r, $m, $d);
+
         $pesel = generatePesel($data, $plec);
         $database->savePesel($pesel, $plec, $data);
         $wynik = $pesel;
@@ -56,11 +65,26 @@ $historia = $database->getHistory(20);
     </header>
 
     <form id="form-generuj" method="post" action="index.php">
-        <label class="pole">
-            <span class="etykieta">Data urodzenia</span>
-            <input type="date" name="data" value="<?= htmlspecialchars($data, ENT_QUOTES, 'UTF-8') ?>"
-                   min="1800-01-01" max="2299-12-31" required>
-        </label>
+        <fieldset class="data">
+            <legend>Data urodzenia</legend>
+            <div class="data-pola">
+                <label class="pole">
+                    <span class="etykieta">Dzień</span>
+                    <input type="number" name="dzien" inputmode="numeric" min="1" max="31" step="1"
+                           placeholder="DD" value="<?= htmlspecialchars($dzien, ENT_QUOTES, 'UTF-8') ?>" required>
+                </label>
+                <label class="pole">
+                    <span class="etykieta">Miesiąc</span>
+                    <input type="number" name="miesiac" inputmode="numeric" min="1" max="12" step="1"
+                           placeholder="MM" value="<?= htmlspecialchars($miesiac, ENT_QUOTES, 'UTF-8') ?>" required>
+                </label>
+                <label class="pole">
+                    <span class="etykieta">Rok</span>
+                    <input type="number" name="rok" inputmode="numeric" min="1800" max="2299" step="1"
+                           placeholder="RRRR" value="<?= htmlspecialchars($rok, ENT_QUOTES, 'UTF-8') ?>" required>
+                </label>
+            </div>
+        </fieldset>
 
         <fieldset class="plec">
             <legend>Płeć</legend>

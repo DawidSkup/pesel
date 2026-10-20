@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // walidacja HTML5 (zakresy pól liczbowych) przed wysłaniem AJAX
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
         const dane = new FormData(form);
         dane.set('ajax', '1');
 
