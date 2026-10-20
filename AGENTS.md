@@ -50,10 +50,15 @@ Generator numeru PESEL:
 
 ## Walidacja
 
-- Data sprawdzana przez `checkdate()` (np. 30 lutego odrzucone).
+- Data sprawdzana po stronie serwera **z uwzględnieniem liczby dni w miesiącu i lat przestępnych**
+  (`dniWMiesiacu()`) — np. 29 lutego dozwolone tylko w roku przestępnym.
+- Komunikaty są konkretne, np. „Rok 2023 nie jest przestępny — luty ma wtedy 28 dni.",
+  „Podaj dzień od 1 do 30 — kwiecień 2000 ma 30 dni.", „Podaj miesiąc od 1 do 12."
 - Rok musi mieścić się w zakresie **1800–2299** (nowsze stulecia obsługiwane maskami wieku).
   W formularzu pole roku ma zakres **1900–2299**, serwer przyjmuje szerszy zakres 1800–2299.
 - Płeć musi być `k` lub `m`.
+- **Komunikat błędu znika od razu**, gdy użytkownik zmieni wartość w którymkolwiek polu
+  (zdarzenie `input` oraz wybór z przewijanej listy).
 
 ## Repozytorium
 

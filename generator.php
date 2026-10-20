@@ -11,17 +11,29 @@
 function generatePesel(string $date, string $gender): string
 {
     if ($gender !== 'k' && $gender !== 'm') {
-        throw new InvalidArgumentException('Nieprawidłowa płeć.');
+        throw new InvalidArgumentException('Wybierz płeć.');
     }
 
     $parts = explode('-', $date);
     if (count($parts) !== 3) {
-        throw new InvalidArgumentException('Nieprawidłowa data urodzenia.');
+        throw new InvalidArgumentException('Podaj poprawną datę urodzenia.');
     }
     [$year, $month, $day] = array_map('intval', $parts);
 
-    if (!checkdate($month, $day, $year)) {
-        throw new InvalidArgumentException('Nieprawidłowa data urodzenia.');
+    if ($month < 1 || $month > 12) {
+        throw new InvalidArgumentException('Podaj miesiąc od 1 do 12.');
+    }
+
+    $dniWMiesiacu = dniWMiesiacu($month, $year);
+    if ($day < 1 || $day > $dniWMiesiacu) {
+        if ($month === 2 && $day === 29) {
+            throw new InvalidArgumentException("Rok $year nie jest przestępny — luty ma wtedy 28 dni.");
+        }
+        $nazwy = ['', 'styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec',
+                  'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'];
+        throw new InvalidArgumentException(
+            "Podaj dzień od 1 do $dniWMiesiacu — " . $nazwy[$month] . " $year ma $dniWMiesiacu dni."
+        );
     }
 
     // maska wieku: dopisek do numeru miesiąca zależnie od stulecia
@@ -44,6 +56,14 @@ function generatePesel(string $date, string $gender): string
     $podstawa = $rr . $mm . $dd . $trzyLosowe . $czwarta;
 
     return $podstawa . cyfraKontrolna($podstawa);
+}
+
+/**
+ * Liczba dni w danym miesiącu (z uwzględnieniem lat przestępnych).
+ */
+function dniWMiesiacu(int $month, int $year): int
+{
+    return (int) date('t', mktime(0, 0, 0, $month, 1, $year));
 }
 
 /**

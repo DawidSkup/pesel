@@ -117,6 +117,13 @@
 
 - [x] Usunięta ikonka ostrzeżenia (`⚠️` z reguły `.blad::before`) pod przyciskiem „Generuj PESEL"
 
+## Etap 15 — Walidacja daty i znikający komunikat
+
+- [x] Walidacja z liczbą dni w miesiącu i latami przestępnymi (`dniWMiesiacu()` w `generator.php`)
+- [x] Konkretne komunikaty, np. „Rok 2023 nie jest przestępny — luty ma wtedy 28 dni."
+- [x] Komunikat błędu znika od razu po zmianie pola (`input` + wybór z listy w `script.js`)
+- [x] Sprawdzone: 29.02.2024 → OK, 29.02.2023 → jasny błąd, 28.02.2023 → OK
+
 ## Do zrobienia / możliwe dalej
 
 - [ ] Sprawdzenie w Laragonie pod adresem `localhost/pesel`

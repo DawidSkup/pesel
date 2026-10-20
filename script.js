@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             opcja.addEventListener('mousedown', (e) => {
                 e.preventDefault();
                 pole.value = i;
+                ukryjBlad();
                 zamknijListe();
                 pole.focus();
             });
@@ -90,6 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', zamknijListe);
+
+    // komunikat błędu znika, gdy użytkownik poprawia dane
+    form.addEventListener('input', ukryjBlad);
+
+    function ukryjBlad() {
+        if (!bladEl.hidden) {
+            bladEl.hidden = true;
+            bladEl.textContent = '';
+        }
+    }
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
